@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript DOM Manipulation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #dynamic-element {
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px dashed #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>DOM Manipulation Exercise</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section>
+            <h2>Dynamic Content Section</h2>
+            <p id="changeable-text">This text will change when you click the button below.</p>
+            <button id="change-text-btn">Change Text</button>
+        </section>
+
+        <section>
+            <h2>Style Modification</h2>
+            <p id="style-change">This element's style will change when you click the button.</p>
+            <button id="change-style-btn">Change Style</button>
+        </section>
+
+        <section>
+            <h2>Element Manipulation</h2>
+            <div id="element-container">
+                <p id="dynamic-element">This element can be added or removed.</p>
+            </div>
+            <button id="toggle-element-btn">Remove Element</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Ancent Mbithi JavaScript DOM Exercise</p>
+    </footer>
+    <script>
+        // Change text content dynamically
+        document.getElementById('change-text-btn').addEventListener('click', function() {
+            const textElement = document.getElementById('changeable-text');
+            if (textElement.textContent === 'This text will change when you click the button below.') {
+                textElement.textContent = 'The text has been changed successfully!';
+            } else {
+                textElement.textContent = 'This text will change when you click the button below.';
+            }
+        });
+
+        // Modify CSS styles via JavaScript
+        document.getElementById('change-style-btn').addEventListener('click', function() {
+            const styleElement = document.getElementById('style-change');
+            styleElement.style.color = 'white';
+            styleElement.style.backgroundColor = 'steelblue';
+            styleElement.style.padding = '15px';
+            styleElement.style.borderRadius = '5px';
+            styleElement.textContent = 'Styles have been applied dynamically!';
+        });
+
+        // Add or remove an element when a button is clicked
+        document.getElementById('toggle-element-btn').addEventListener('click', function() {
+            const container = document.getElementById('element-container');
+            const element = document.getElementById('dynamic-element');
+            const button = document.getElementById('toggle-element-btn');
+            
+            if (element) {
+                container.removeChild(element);
+                button.textContent = 'Add Element';
+            } else {
+                const newElement = document.createElement('p');
+                newElement.id = 'dynamic-element';
+                newElement.textContent = 'This element can be added or removed.';
+                container.appendChild(newElement);
+                button.textContent = 'Remove Element';
+            }
+        });
+
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
